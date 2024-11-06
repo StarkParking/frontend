@@ -1,10 +1,22 @@
 import { useEffect, useState } from 'react'
 import { IoMdWallet } from 'react-icons/io'
 import { FaLocationDot } from 'react-icons/fa6'
-import { Link } from 'react-router-dom'
+import { Button } from './ui/button'
+import { useAccount } from '../hooks/useAccount'
+import { useNavigate } from 'react-router-dom'
 
 function Header() {
+  const { address, openConnectionPage } = useAccount()
   const [location, setLocation] = useState('Loading...')
+  const navigate = useNavigate()
+
+  const handleWalletButton = () => {
+    if (!address) {
+      openConnectionPage()
+    } else {
+      navigate('/profile')
+    }
+  }
 
   useEffect(() => {
     fetch('https://ipapi.co/json/')
@@ -26,9 +38,9 @@ function Header() {
         <span>{location}</span>
       </div>
       <div className="relative rounded-full p-4 bg-gray-200">
-        <Link to="/notifications">
+        <Button onClick={handleWalletButton}>
           <IoMdWallet className="h-6 w-6 text-black" />
-        </Link>
+        </Button>
       </div>
     </div>
   )
