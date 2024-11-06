@@ -1,4 +1,6 @@
 import Balance from './Balance'
+import LatestParkings from './LastestParkings'
+import ParkingCategories from './ParkingCategories'
 import SearchBar from './SearchBar'
 
 function Home() {
@@ -6,6 +8,8 @@ function Home() {
     <div>
       <Balance />
       <SearchBar />
+      <ParkingCategories />
+      <LatestParkings />
     </div>
   )
 }
