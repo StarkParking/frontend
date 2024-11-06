@@ -4,14 +4,13 @@ import { FaLocationDot } from 'react-icons/fa6'
 import { Link } from 'react-router-dom'
 
 function Header() {
-  const [location, setLocation] = useState('Sukabumi, Jawa barat')
+  const [location, setLocation] = useState('Loading...')
 
   useEffect(() => {
-    // const token = import.meta.env.VITE_IPINFO_ACCESS_TOKEN
     fetch('https://ipapi.co/json/')
       .then(res => res.json())
       .then(data => {
-        const userLocation = `${data.city}, ${data.region}`
+        const userLocation = `${data.city}`
         setLocation(userLocation)
       })
       .catch(error => {
