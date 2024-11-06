@@ -1,9 +1,10 @@
 import { Toaster } from 'react-hot-toast'
-import { BrowserRouter } from 'react-router-dom'
+import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import Header from './components/Header'
 import MobileLayout from './components/MobileLayout'
 import BottomNavigation from './components/BottomNavigation'
 import { AccountProvider } from './hooks/useAccount'
+import Home from './pages/home'
 
 function App() {
   return (
@@ -12,6 +13,11 @@ function App() {
         <MobileLayout>
           <Toaster position="top-right" />
           <Header />
+          <div className=":uno: px-4">
+            <Routes>
+              <Route path="/" element={<Home />} />
+            </Routes>
+          </div>
           <BottomNavigation />
         </MobileLayout>
       </BrowserRouter>
