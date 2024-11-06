@@ -15,7 +15,7 @@ import * as Dojo from '@dojoengine/torii-wasm'
 import encodeUrl from 'encodeurl'
 import { CartridgeSessionAccount } from '../lib/account-wasm/account_wasm'
 
-const RPC_URL = 'https://api.cartridge.gg/x/starknet/mainnet'
+const RPC_URL = import.meta.env.VITE_APP_RPC_URL
 const KEYCHAIN_URL = 'https://x.cartridge.gg'
 const POLICIES = [
   {
@@ -29,7 +29,7 @@ const POLICIES = [
     description: 'Claim your tokens'
   }
 ]
-const REDIRECT_URI = 'https://t.me/hitthingbot/hitthing'
+const REDIRECT_URI = import.meta.env.VITE_APP_REDIRECT_URI
 
 interface AccountStorage {
   username: string
@@ -122,7 +122,7 @@ export const AccountProvider: React.FC<{ children: React.ReactNode }> = ({
       sessionSigner.privateKey,
       accountStorage.address,
       accountStorage.ownerGuid,
-      Dojo.cairoShortStringToFelt('SN_MAINNET'),
+      Dojo.cairoShortStringToFelt('SN_TESTNET'),
       {
         expiresAt: Number(accountStorage.expiresAt),
         policies: POLICIES

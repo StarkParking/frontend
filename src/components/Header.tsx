@@ -37,11 +37,9 @@ function Header() {
         <FaLocationDot />
         <span>{location}</span>
       </div>
-      <div className="relative rounded-full p-4 bg-gray-200">
-        <Button onClick={handleWalletButton}>
-          <IoMdWallet className="h-6 w-6 text-black" />
-        </Button>
-      </div>
+      <Button variant="secondary" onClick={handleWalletButton}>
+        <IoMdWallet className="h-6 w-6 text-black" />
+      </Button>
     </div>
   )
 }
