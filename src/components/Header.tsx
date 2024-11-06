@@ -8,7 +8,7 @@ function Header() {
 
   useEffect(() => {
     const token = import.meta.env.VITE_IPINFO_ACCESS_TOKEN
-    fetch(`https://ipinfo.io/json?token=${token}`)
+    fetch(`https://ipapi.io/json/`)
       .then(res => res.json())
       .then(data => {
         const userLocation = `${data.city}, ${data.region}`
