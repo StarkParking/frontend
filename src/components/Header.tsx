@@ -7,7 +7,7 @@ function Header() {
   const [location, setLocation] = useState('Sukabumi, Jawa barat')
 
   useEffect(() => {
-    const token = import.meta.env.VITE_IPINFO_ACCESS_TOKEN
+    // const token = import.meta.env.VITE_IPINFO_ACCESS_TOKEN
     fetch(`https://ipapi.io/json/`)
       .then(res => res.json())
       .then(data => {
