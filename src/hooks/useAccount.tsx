@@ -19,14 +19,28 @@ const RPC_URL = import.meta.env.VITE_APP_RPC_URL
 const KEYCHAIN_URL = 'https://x.cartridge.gg'
 const POLICIES = [
   {
-    target: '0x70fc96f845e393c732a468b6b6b54d876bd1a29e41a026e8b13579bf98eec8f',
-    method: 'attack',
-    description: 'Attack the beast'
+    target:
+      '0x00d391abca7c9853d84f6c717e6a94b77d11836fb77a8edecfdbf60af59dc105',
+    method: 'register_parking_lot',
+    description: 'Register a parking spot'
   },
   {
-    target: '0x70fc96f845e393c732a468b6b6b54d876bd1a29e41a026e8b13579bf98eec8f',
-    method: 'claim',
-    description: 'Claim your tokens'
+    target:
+      '0x00d391abca7c9853d84f6c717e6a94b77d11836fb77a8edecfdbf60af59dc105',
+    method: 'book_parking',
+    description: 'Create a booking for a parking spot'
+  },
+  {
+    target:
+      '0x00d391abca7c9853d84f6c717e6a94b77d11836fb77a8edecfdbf60af59dc105',
+    method: 'end_parking',
+    description: 'End a parking session'
+  },
+  {
+    target:
+      '0x00d391abca7c9853d84f6c717e6a94b77d11836fb77a8edecfdbf60af59dc105',
+    method: 'extend_parking',
+    description: 'Extend a parking session'
   }
 ]
 const REDIRECT_URI = import.meta.env.VITE_APP_REDIRECT_URI
