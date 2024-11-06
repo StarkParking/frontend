@@ -1,10 +1,24 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { IoMdWallet } from 'react-icons/io'
 import { FaLocationDot } from 'react-icons/fa6'
 import { Link } from 'react-router-dom'
 
 function Header() {
   const [location, setLocation] = useState('Sukabumi, Jawa barat')
+
+  useEffect(() => {
+    const token = import.meta.env.VITE_IPINFO_ACCESS_TOKEN
+    fetch(`https://ipinfo.io/json?token=${token}`)
+      .then(res => res.json())
+      .then(data => {
+        const userLocation = `${data.city}, ${data.region}`
+        setLocation(userLocation)
+      })
+      .catch(error => {
+        console.error('Error fetching location:', error)
+        setLocation('Unknown location')
+      })
+  }, [])
 
   return (
     <div className="flex justify-between items-center mb-6 px-4 pt-4">
