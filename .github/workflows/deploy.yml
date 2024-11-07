@@ -38,5 +38,6 @@ jobs:
             cd starkparking-fe
             git pull origin main
             yarn install
+            yarn add @starknet-io/types-js
             yarn build || { echo "Build failed"; exit 1; }
             pm2 restart starkparking-fe
