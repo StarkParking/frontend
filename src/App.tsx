@@ -40,7 +40,7 @@ function App() {
     <StarknetConfig
       chains={[sepolia]}
       provider={provider}
-      connectors={connectors}
+      // connectors={connectors}
     >
       {/* <AccountProvider> */}
       <BrowserRouter>
