@@ -6,7 +6,8 @@ function Balance() {
   // const { address } = useAccount()
   const { address } = useAccount()
   const { data, isFetching, isSuccess, error, status } = useBalance({
-    address, //: addZeroAfter0x(address || ''),
+    address:
+      '0x5c8a461c19dd577fe6257c9ec0376b87aa155acebd84f32a72d02b79bc67fd1', //: addZeroAfter0x(address || ''),
     token: '0x04718f5a0fc34cc1af16a1cdee98ffb20c31f5cd61d6ab07201858f4287c938d',
     watch: false
   })
