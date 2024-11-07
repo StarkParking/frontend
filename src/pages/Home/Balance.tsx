@@ -5,10 +5,11 @@ import { useBalance } from '@starknet-react/core'
 function Balance() {
   const { address } = useAccount()
   const { data, isFetching, isSuccess, error } = useBalance({
-    address: addZeroAfter0x(address || '')
+    address: addZeroAfter0x(address || ''),
+    watch: false
   })
 
-  console.log(address, data, error)
+  console.log(addZeroAfter0x(address || ''), data, error)
 
   return (
     <div className="mb-8 flex justify-between items-end">
