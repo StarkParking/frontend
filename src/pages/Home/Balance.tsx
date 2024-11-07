@@ -7,7 +7,7 @@ function Balance() {
     address
   })
 
-  console.log(error)
+  console.log(address, data, error)
 
   return (
     <div className="mb-8 flex justify-between items-end">
