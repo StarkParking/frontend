@@ -6,6 +6,7 @@ import BottomNavigation from './components/BottomNavigation'
 import { AccountProvider } from './hooks/useAccount'
 import Home from './pages/Home'
 import ParkingSpotSelection from './pages/ParkingSpotSelection'
+import Booking from './pages/Booking'
 
 function App() {
   return (
@@ -14,10 +15,11 @@ function App() {
         <MobileLayout>
           <Toaster position="top-right" />
           <Header />
-          <div className=":uno: px-4">
+          <div className="px-4">
             <Routes>
               <Route path="/" element={<Home />} />
               <Route path="/parking/:id" element={<ParkingSpotSelection />} />
+              <Route path="/booking/:spotId" element={<Booking />} />
             </Routes>
           </div>
           <BottomNavigation />
