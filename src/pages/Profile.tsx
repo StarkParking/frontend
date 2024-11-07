@@ -184,8 +184,8 @@ const Profile = () => {
               <CardTitle>Wallet</CardTitle>
               <CardDescription>Your wallet address</CardDescription>
             </CardHeader>
-            <CardContent>
-              <span>{address}</span>
+            <CardContent className="text-wrap">
+              <p>{address}</p>
               <a
                 href={`https://voyager.online/contract/${address}`}
                 target="_blank"
