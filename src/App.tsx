@@ -7,6 +7,8 @@ import { AccountProvider } from './hooks/useAccount'
 import Home from './pages/Home'
 import ParkingSpotSelection from './pages/ParkingSpotSelection'
 import Booking from './pages/Booking'
+import Sessions from './pages/Sessions'
+import ParkingSession from './pages/ParkingSession'
 
 function App() {
   return (
@@ -20,6 +22,8 @@ function App() {
               <Route path="/" element={<Home />} />
               <Route path="/parking/:id" element={<ParkingSpotSelection />} />
               <Route path="/booking/:spotId" element={<Booking />} />
+              <Route path="/session/" element={<Sessions />} />
+              <Route path="/session/:spotId" element={<ParkingSession />} />
             </Routes>
           </div>
           <BottomNavigation />
