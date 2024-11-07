@@ -5,9 +5,9 @@ export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs))
 }
 
-export function addZeroAfter0x(input: string) {
+export function addZeroAfter0x(input: string): `0x${string}` {
   if (input.startsWith('0x') && input.length === 66) {
-    return input
+    return input as `0x${string}`
   }
-  return input.replace(/^0x/, '0x0')
+  return input.replace(/^0x/, '0x0') as `0x${string}`
 }

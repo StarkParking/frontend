@@ -24,7 +24,7 @@ import { POLICIES, RPC_URL } from './constants'
 
 function App() {
   const rpc = useCallback(() => {
-    return { nodeUrl: 'https://starknet-sepolia.public.blastapi.io/rpc/v0_7' } // RPC_URL }
+    return { nodeUrl: RPC_URL }
   }, [])
 
   const provider = jsonRpcProvider({ rpc })
@@ -40,28 +40,28 @@ function App() {
     <StarknetConfig
       chains={[sepolia]}
       provider={provider}
-      // connectors={connectors}
+      connectors={connectors}
     >
-      {/* <AccountProvider> */}
-      <BrowserRouter>
-        <MobileLayout>
-          <Toaster position="top-right" />
-          {/* <Header /> */}
-          <div className="px-4">
-            <Routes>
-              <Route path="/" element={<Home />} />
-              <Route path="/parking/:id" element={<ParkingSpotSelection />} />
-              <Route path="/booking/:spotId" element={<Booking />} />
-              <Route path="/session/" element={<Sessions />} />
-              <Route path="/session/:spotId" element={<ParkingSession />} />
-              <Route path="/map" element={<MapView />} />
-              <Route path="/profile" element={<Profile />} />
-            </Routes>
-          </div>
-          <BottomNavigation />
-        </MobileLayout>
-      </BrowserRouter>
-      {/* </AccountProvider> */}
+      <AccountProvider>
+        <BrowserRouter>
+          <MobileLayout>
+            <Toaster position="top-right" />
+            <Header />
+            <div className="px-4">
+              <Routes>
+                <Route path="/" element={<Home />} />
+                <Route path="/parking/:id" element={<ParkingSpotSelection />} />
+                <Route path="/booking/:spotId" element={<Booking />} />
+                <Route path="/session/" element={<Sessions />} />
+                <Route path="/session/:spotId" element={<ParkingSession />} />
+                <Route path="/map" element={<MapView />} />
+                <Route path="/profile" element={<Profile />} />
+              </Routes>
+            </div>
+            <BottomNavigation />
+          </MobileLayout>
+        </BrowserRouter>
+      </AccountProvider>
     </StarknetConfig>
   )
 }
