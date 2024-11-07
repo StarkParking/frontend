@@ -9,7 +9,7 @@ function Balance() {
     watch: false
   })
 
-  console.log(addZeroAfter0x(address || ''), data, error)
+  console.log({ data, isFetching, isSuccess, error })
 
   return (
     <div className="mb-8 flex justify-between items-end">

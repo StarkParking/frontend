@@ -1,7 +1,12 @@
 import { useCallback } from 'react'
 import { Toaster } from 'react-hot-toast'
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
-import { Connector, StarknetConfig, publicProvider } from '@starknet-react/core'
+import {
+  Connector,
+  StarknetConfig,
+  jsonRpcProvider,
+  publicProvider
+} from '@starknet-react/core'
 import ControllerConnector from '@cartridge/connector'
 
 import Header from './components/Header'
@@ -23,6 +28,8 @@ function App() {
     return { nodeUrl: RPC_URL }
   }, [])
 
+  const provider = jsonRpcProvider({ rpc })
+
   const connectors = [
     new ControllerConnector({
       rpc: rpc().nodeUrl,
@@ -33,7 +40,7 @@ function App() {
   return (
     <StarknetConfig
       chains={[sepolia]}
-      provider={publicProvider()}
+      provider={provider}
       connectors={connectors}
     >
       <AccountProvider>
