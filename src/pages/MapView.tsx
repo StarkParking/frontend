@@ -46,20 +46,24 @@ const parkingSpots = [
 
 const MapView = () => {
   const navigate = useNavigate()
+  const [isLoading, setLoading] = useState(false)
   const [location, setLocation] = useState<[number, number]>([0, 0])
 
   useEffect(() => {
-    fetch('https://ipapi.co/json/')
-      .then(res => res.json())
-      .then(data => {
+    ;(async () => {
+      try {
+        setLoading(true)
+        const response = await fetch('https://ipapi.co/json/')
+        const data = await response.json()
         const userLocation = [data.latitude, data.longitude] as [number, number]
         setLocation(userLocation)
-        console.log({ data, userLocation })
-      })
-      .catch(error => {
+      } catch (error) {
         console.error('Error fetching location:', error)
         setLocation([0, 0])
-      })
+      } finally {
+        setLoading(false)
+      }
+    })()
   }, [])
 
   return (
@@ -75,52 +79,56 @@ const MapView = () => {
         </div>
       </div>
 
-      <MapContainer center={location} zoom={15} className="w-full h-[450px]">
-        <TileLayer
-          attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-          url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-        />
-        {parkingSpots.map(spot => (
-          <Marker
-            key={spot.id}
-            position={spot.position as [number, number]}
-            icon={defaultIcon as any}
-          >
-            <Popup>
-              <div className="p-2 space-y-3 min-w-[200px]">
-                <h3 className="font-semibold text-lg">{spot.name}</h3>
-                <p className="text-sm text-gray-600">{spot.address}</p>
+      {isLoading ? (
+        <span>Loading</span>
+      ) : (
+        <MapContainer center={location} zoom={15} className="w-full h-[450px]">
+          <TileLayer
+            attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+            url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+          />
+          {parkingSpots.map(spot => (
+            <Marker
+              key={spot.id}
+              position={spot.position as [number, number]}
+              icon={defaultIcon as any}
+            >
+              <Popup>
+                <div className="p-2 space-y-3 min-w-[200px]">
+                  <h3 className="font-semibold text-lg">{spot.name}</h3>
+                  <p className="text-sm text-gray-600">{spot.address}</p>
 
-                <div className="flex items-center justify-between text-sm text-gray-600">
-                  <div className="flex items-center gap-1">
-                    <Car className="h-4 w-4" />
-                    <span>{spot.available} spots</span>
+                  <div className="flex items-center justify-between text-sm text-gray-600">
+                    <div className="flex items-center gap-1">
+                      <Car className="h-4 w-4" />
+                      <span>{spot.available} spots</span>
+                    </div>
+                    <div className="flex items-center gap-1">
+                      <Clock className="h-4 w-4" />
+                      <span>{spot.distance}</span>
+                    </div>
                   </div>
-                  <div className="flex items-center gap-1">
-                    <Clock className="h-4 w-4" />
-                    <span>{spot.distance}</span>
+
+                  <div className="flex items-center justify-between">
+                    <span className="font-semibold">
+                      ${spot.price.toFixed(2)}/hr
+                    </span>
+                    <Button
+                      size="sm"
+                      onClick={e => {
+                        e.stopPropagation()
+                        navigate(`/parking/${spot.id}`)
+                      }}
+                    >
+                      Book Now
+                    </Button>
                   </div>
                 </div>
-
-                <div className="flex items-center justify-between">
-                  <span className="font-semibold">
-                    ${spot.price.toFixed(2)}/hr
-                  </span>
-                  <Button
-                    size="sm"
-                    onClick={e => {
-                      e.stopPropagation()
-                      navigate(`/parking/${spot.id}`)
-                    }}
-                  >
-                    Book Now
-                  </Button>
-                </div>
-              </div>
-            </Popup>
-          </Marker>
-        ))}
-      </MapContainer>
+              </Popup>
+            </Marker>
+          ))}
+        </MapContainer>
+      )}
     </div>
   )
 }
