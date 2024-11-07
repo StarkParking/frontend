@@ -10,6 +10,7 @@ import Booking from './pages/Booking'
 import Sessions from './pages/Sessions'
 import ParkingSession from './pages/ParkingSession'
 import MapView from './pages/MapView'
+import Profile from './pages/Profile'
 
 function App() {
   return (
@@ -26,6 +27,7 @@ function App() {
               <Route path="/session/" element={<Sessions />} />
               <Route path="/session/:spotId" element={<ParkingSession />} />
               <Route path="/map" element={<MapView />} />
+              <Route path="/profile" element={<Profile />} />
             </Routes>
           </div>
           <BottomNavigation />
