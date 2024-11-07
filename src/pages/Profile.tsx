@@ -187,7 +187,7 @@ const Profile = () => {
             </CardHeader>
             <CardContent>
               <p className="break-all mb-2">{address}</p>
-              <div className="flex items-center">
+              <div className="flex items-center gap-2">
                 <a
                   href={`https://voyager.online/contract/${address}`}
                   target="_blank"
