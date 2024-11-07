@@ -91,7 +91,7 @@ const MapView = () => {
             <Marker
               key={spot.id}
               position={spot.position as [number, number]}
-              icon={defaultIcon as any}
+              icon={defaultIcon}
             >
               <Popup>
                 <div className="p-2 space-y-3 min-w-[200px]">
