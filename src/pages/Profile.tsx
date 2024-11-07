@@ -12,6 +12,7 @@ import {
   CardHeader,
   CardTitle
 } from '@/components/ui/card'
+import { useAccount } from '@/hooks/useAccount'
 
 interface Vehicle {
   plate: string
@@ -26,6 +27,7 @@ const Profile = () => {
   const [vehicles, setVehicles] = useState<Vehicle[]>([])
   const [newVehicle, setNewVehicle] = useState({ plate: '', model: '' })
   const [isAddingVehicle, setIsAddingVehicle] = useState(false)
+  const { address, openConnectionPage } = useAccount()
 
   const handleAddVehicle = () => {
     if (!newVehicle.plate || !newVehicle.model) {
@@ -48,8 +50,7 @@ const Profile = () => {
   }
 
   const handleConnectWallet = () => {
-    // Here you would typically integrate with a wallet provider
-    toast.success('Wallet connected successfully')
+    openConnectionPage()
   }
 
   return (
@@ -161,21 +162,39 @@ const Profile = () => {
           </CardContent>
         </Card>
 
-        <Card>
-          <CardHeader>
-            <CardTitle>Wallet</CardTitle>
-            <CardDescription>Connect your digital wallet</CardDescription>
-          </CardHeader>
-          <CardContent>
-            <Button
-              variant="outline"
-              onClick={handleConnectWallet}
-              className="w-full"
-            >
-              <Wallet className="w-4 h-4 mr-2" /> Connect Wallet
-            </Button>
-          </CardContent>
-        </Card>
+        {!address ? (
+          <Card>
+            <CardHeader>
+              <CardTitle>Wallet</CardTitle>
+              <CardDescription>Connect your wallet</CardDescription>
+            </CardHeader>
+            <CardContent>
+              <Button
+                variant="outline"
+                onClick={handleConnectWallet}
+                className="w-full"
+              >
+                <Wallet className="w-4 h-4 mr-2" /> Connect Wallet
+              </Button>
+            </CardContent>
+          </Card>
+        ) : (
+          <Card>
+            <CardHeader>
+              <CardTitle>Wallet</CardTitle>
+              <CardDescription>Your wallet address</CardDescription>
+            </CardHeader>
+            <CardContent>
+              <span>{address}</span>
+              <a
+                href={`https://voyager.online/contract/${address}`}
+                target="_blank"
+              >
+                View on explorer
+              </a>
+            </CardContent>
+          </Card>
+        )}
       </div>
     </div>
   )
