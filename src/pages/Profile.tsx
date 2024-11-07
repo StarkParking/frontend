@@ -5,6 +5,7 @@ import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import { ChevronLeft, Plus, Wallet } from 'lucide-react'
 import { toast } from 'react-hot-toast'
+import { FaExternalLinkAlt } from 'react-icons/fa'
 import {
   Card,
   CardContent,
@@ -184,13 +185,13 @@ const Profile = () => {
               <CardTitle>Wallet</CardTitle>
               <CardDescription>Your wallet address</CardDescription>
             </CardHeader>
-            <CardContent className="text-wrap">
-              <p>{address}</p>
+            <CardContent>
+              <p className="break-all mb-2">{address}</p>
               <a
                 href={`https://voyager.online/contract/${address}`}
                 target="_blank"
               >
-                View on explorer
+                View on explorer <FaExternalLinkAlt />
               </a>
             </CardContent>
           </Card>
