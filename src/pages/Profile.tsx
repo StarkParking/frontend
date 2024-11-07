@@ -28,7 +28,7 @@ const Profile = () => {
   const [vehicles, setVehicles] = useState<Vehicle[]>([])
   const [newVehicle, setNewVehicle] = useState({ plate: '', model: '' })
   const [isAddingVehicle, setIsAddingVehicle] = useState(false)
-  const { address, openConnectionPage } = useAccount()
+  const { address, openConnectionPage, clearSession } = useAccount()
 
   const handleAddVehicle = () => {
     if (!newVehicle.plate || !newVehicle.model) {
@@ -197,6 +197,9 @@ const Profile = () => {
                   <FaExternalLinkAlt />
                 </a>
               </div>
+              <Button variant="destructive" onClick={clearSession}>
+                Disconnect
+              </Button>
             </CardContent>
           </Card>
         )}

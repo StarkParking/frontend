@@ -1,5 +1,5 @@
 import Balance from './Balance'
-import LatestParkings from './LastestParkings'
+// import LatestParkings from './LastestParkings'
 import ParkingCategories from './ParkingCategories'
 import SearchBar from './SearchBar'
 
@@ -9,7 +9,7 @@ function Home() {
       <Balance />
       <SearchBar />
       <ParkingCategories />
-      <LatestParkings />
+      {/* <LatestParkings /> */}
     </div>
   )
 }
