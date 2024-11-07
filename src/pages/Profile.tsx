@@ -187,12 +187,15 @@ const Profile = () => {
             </CardHeader>
             <CardContent>
               <p className="break-all mb-2">{address}</p>
-              <a
-                href={`https://voyager.online/contract/${address}`}
-                target="_blank"
-              >
-                View on explorer <FaExternalLinkAlt />
-              </a>
+              <div className="flex items-center">
+                <a
+                  href={`https://voyager.online/contract/${address}`}
+                  target="_blank"
+                >
+                  View on explorer
+                </a>
+                <FaExternalLinkAlt />
+              </div>
             </CardContent>
           </Card>
         )}
