@@ -104,6 +104,65 @@ const Profile = () => {
 
         <Card>
           <CardHeader>
+            <CardTitle>Vehicles</CardTitle>
+            <CardDescription>Manage your registered vehicles</CardDescription>
+          </CardHeader>
+          <CardContent className="space-y-4">
+            {vehicles.map((vehicle, index) => (
+              <div
+                key={index}
+                className="flex justify-between items-center p-3 bg-gray-100 rounded-lg"
+              >
+                <div>
+                  <p className="font-medium">{vehicle.plate}</p>
+                  <p className="text-sm text-gray-500">{vehicle.model}</p>
+                </div>
+              </div>
+            ))}
+
+            {isAddingVehicle ? (
+              <div className="space-y-4">
+                <Input
+                  placeholder="License Plate"
+                  value={newVehicle.plate}
+                  onChange={e =>
+                    setNewVehicle({ ...newVehicle, plate: e.target.value })
+                  }
+                />
+                <Input
+                  placeholder="Car Model"
+                  value={newVehicle.model}
+                  onChange={e =>
+                    setNewVehicle({ ...newVehicle, model: e.target.value })
+                  }
+                />
+                <div className="flex gap-2">
+                  <Button onClick={handleAddVehicle} className="flex-1">
+                    Add Vehicle
+                  </Button>
+                  <Button
+                    variant="outline"
+                    onClick={() => setIsAddingVehicle(false)}
+                    className="flex-1"
+                  >
+                    Cancel
+                  </Button>
+                </div>
+              </div>
+            ) : (
+              <Button
+                variant="outline"
+                onClick={() => setIsAddingVehicle(true)}
+                className="w-full"
+              >
+                <Plus className="w-4 h-4 mr-2" /> Add Vehicle
+              </Button>
+            )}
+          </CardContent>
+        </Card>
+
+        <Card>
+          <CardHeader>
             <CardTitle>Wallet</CardTitle>
             <CardDescription>Connect your digital wallet</CardDescription>
           </CardHeader>

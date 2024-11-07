@@ -77,11 +77,7 @@ const MapView = () => {
         </div>
       </div>
 
-      <MapContainer
-        center={[-6.9175, 106.9275] as [number, number]}
-        zoom={15}
-        className="w-full h-[450px]"
-      >
+      <MapContainer center={location} zoom={15} className="w-full h-[450px]">
         <TileLayer
           attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"

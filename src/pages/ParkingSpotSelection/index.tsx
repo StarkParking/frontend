@@ -14,7 +14,7 @@ const ParkingSpotSelection = () => {
           <Button size="icon" onClick={() => navigate(-1)}>
             <ChevronLeft className="h-6 w-6" />
           </Button>
-          <h1 className="text-xl font-semibold">Choose a Spot</h1>
+          <h1 className="text-xl font-semibold">Choose a Spot {id}</h1>
         </div>
 
         <div className="rounded-xl p-4">

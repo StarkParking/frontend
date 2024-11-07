@@ -17,6 +17,7 @@ const ParkingSession = () => {
         if (prev <= 0) return 0
         return prev - 1
       })
+      setProgress(10)
     }, 1000)
 
     return () => clearInterval(timer)
