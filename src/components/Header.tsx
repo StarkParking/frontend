@@ -1,7 +1,6 @@
 import { useEffect, useState } from 'react'
 import { IoMdWallet } from 'react-icons/io'
 import { FaLocationDot } from 'react-icons/fa6'
-import Controller from '@cartridge/controller'
 import { Button } from './ui/button'
 import { useNavigate } from 'react-router-dom'
 import { useAccount } from '../hooks/useAccount'
