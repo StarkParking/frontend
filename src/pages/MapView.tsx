@@ -52,10 +52,7 @@ const MapView = () => {
     fetch('https://ipapi.co/json/')
       .then(res => res.json())
       .then(data => {
-        const userLocation = [data.latitude, data.longtitude] as [
-          number,
-          number
-        ]
+        const userLocation = [data.latitude, data.longitude] as [number, number]
         setLocation(userLocation)
       })
       .catch(error => {
