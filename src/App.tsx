@@ -9,6 +9,7 @@ import ParkingSpotSelection from './pages/ParkingSpotSelection'
 import Booking from './pages/Booking'
 import Sessions from './pages/Sessions'
 import ParkingSession from './pages/ParkingSession'
+import MapView from './pages/MapView'
 
 function App() {
   return (
@@ -24,6 +25,7 @@ function App() {
               <Route path="/booking/:spotId" element={<Booking />} />
               <Route path="/session/" element={<Sessions />} />
               <Route path="/session/:spotId" element={<ParkingSession />} />
+              <Route path="/map" element={<MapView />} />
             </Routes>
           </div>
           <BottomNavigation />

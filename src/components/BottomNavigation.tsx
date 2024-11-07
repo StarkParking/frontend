@@ -7,7 +7,7 @@ function BottomNavigation() {
   const location = useLocation()
 
   return (
-    <div className="fixed bottom-0 left-1/2 bg-black border-t py-4 max-w-[430px] w-full -translate-x-1/2 z-9999">
+    <div className="fixed bottom-0 left-1/2 bg-black border-t py-4 max-w-[430px] w-full -translate-x-1/2 z-99999">
       <div className="container max-w-md mx-auto flex justify-between px-4">
         {[
           { icon: GoHomeFill, label: 'Home', to: '/' },
