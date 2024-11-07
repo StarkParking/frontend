@@ -189,7 +189,7 @@ const Profile = () => {
               <p className="break-all mb-2">{address}</p>
               <div>
                 <a
-                  href={`https://voyager.online/contract/${address}`}
+                  href={`https://sepolia.voyager.online/contract/${address}`}
                   target="_blank"
                   className="flex items-center gap-2"
                 >
