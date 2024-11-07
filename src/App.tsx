@@ -24,7 +24,7 @@ import { POLICIES, RPC_URL } from './constants'
 
 function App() {
   const rpc = useCallback(() => {
-    return { nodeUrl: RPC_URL }
+    return { nodeUrl: 'https://starknet-sepolia.blastapi.io' } // RPC_URL }
   }, [])
 
   const provider = jsonRpcProvider({ rpc })
