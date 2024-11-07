@@ -54,6 +54,7 @@ const MapView = () => {
       .then(data => {
         const userLocation = [data.latitude, data.longitude] as [number, number]
         setLocation(userLocation)
+        console.log({ data, userLocation })
       })
       .catch(error => {
         console.error('Error fetching location:', error)
