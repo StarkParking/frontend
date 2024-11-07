@@ -1,10 +1,11 @@
 import { useAccount } from '@/hooks/useAccount'
+import { addZeroAfter0x } from '@/lib/utils'
 import { useBalance } from '@starknet-react/core'
 
 function Balance() {
   const { address } = useAccount()
   const { data, isFetching, isSuccess, error } = useBalance({
-    address
+    address: addZeroAfter0x(address || '')
   })
 
   console.log(address, data, error)
