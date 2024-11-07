@@ -4,8 +4,7 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import {
   Connector,
   StarknetConfig,
-  jsonRpcProvider,
-  publicProvider
+  jsonRpcProvider
 } from '@starknet-react/core'
 import ControllerConnector from '@cartridge/connector'
 
