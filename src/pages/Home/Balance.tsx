@@ -4,12 +4,12 @@ import { useBalance } from '@starknet-react/core'
 
 function Balance() {
   const { address } = useAccount()
-  const { data, isFetching, isSuccess, error } = useBalance({
-    address: addZeroAfter0x(address || ''),
+  const { data, isFetching, isSuccess, error, status } = useBalance({
+    address, //: addZeroAfter0x(address || ''),
     watch: false
   })
 
-  console.log({ data, isFetching, isSuccess, error })
+  console.log({ data, isFetching, isSuccess, error, status })
 
   return (
     <div className="mb-8 flex justify-between items-end">
