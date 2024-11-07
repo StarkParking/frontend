@@ -31,12 +31,12 @@ function App() {
   ]
 
   return (
-    <AccountProvider>
-      <StarknetConfig
-        chains={[sepolia]}
-        provider={publicProvider()}
-        connectors={connectors}
-      >
+    <StarknetConfig
+      chains={[sepolia]}
+      provider={publicProvider()}
+      connectors={connectors}
+    >
+      <AccountProvider>
         <BrowserRouter>
           <MobileLayout>
             <Toaster position="top-right" />
@@ -55,8 +55,8 @@ function App() {
             <BottomNavigation />
           </MobileLayout>
         </BrowserRouter>
-      </StarknetConfig>
-    </AccountProvider>
+      </AccountProvider>
+    </StarknetConfig>
   )
 }
 
