@@ -46,7 +46,7 @@ function App() {
       <BrowserRouter>
         <MobileLayout>
           <Toaster position="top-right" />
-          <Header />
+          {/* <Header /> */}
           <div className="px-4">
             <Routes>
               <Route path="/" element={<Home />} />
