@@ -3,9 +3,11 @@ import { useBalance } from '@starknet-react/core'
 
 function Balance() {
   const { address } = useAccount()
-  const { data, isFetching, isSuccess } = useBalance({
+  const { data, isFetching, isSuccess, error } = useBalance({
     address
   })
+
+  console.log(error)
 
   return (
     <div className="mb-8 flex justify-between items-end">
