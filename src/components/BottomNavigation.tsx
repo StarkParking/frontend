@@ -7,8 +7,8 @@ function BottomNavigation() {
   const location = useLocation()
 
   return (
-    <div className=":uno: fixed bottom-0 left-1/2 bg-black border-t py-4 max-w-[430px] w-full -translate-x-1/2 z-9999">
-      <div className=":uno: container max-w-md mx-auto flex justify-between px-4">
+    <div className="fixed bottom-0 left-1/2 bg-black border-t py-4 max-w-[430px] w-full -translate-x-1/2 z-9999">
+      <div className="container max-w-md mx-auto flex justify-between px-4">
         {[
           { icon: GoHomeFill, label: 'Home', to: '/' },
           { icon: FaStopwatch, label: 'Sessions', to: '/session' },
@@ -21,11 +21,7 @@ function BottomNavigation() {
               ? 'text-lime-400'
               : 'text-gray-400'
           return (
-            <Link
-              key={label}
-              to={to}
-              className=":uno: flex flex-col items-center"
-            >
+            <Link key={label} to={to} className="flex flex-col items-center">
               <Icon className={`h-6 w-6 ${linkClassName}`} />
               <span className={`text-xs mt-1 ${linkClassName}`}>{label}</span>
             </Link>
