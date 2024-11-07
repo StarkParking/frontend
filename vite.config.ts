@@ -12,6 +12,9 @@ export default defineConfig({
     }
   },
   build: {
-    target: 'ES2022'
+    target: 'ES2022',
+    rollupOptions: {
+      external: ['@starknet-io/types-js']
+    }
   }
 })
