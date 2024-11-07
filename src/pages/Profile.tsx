@@ -55,7 +55,7 @@ const Profile = () => {
   }
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen">
       <div className="container max-w-md mx-auto px-4 pt-8 pb-20 space-y-6">
         <div className="flex items-center gap-4">
           <Button size="icon" onClick={() => navigate(-1)}>
@@ -197,7 +197,11 @@ const Profile = () => {
                   <FaExternalLinkAlt />
                 </a>
               </div>
-              <Button variant="destructive" onClick={clearSession}>
+              <Button
+                className="mt-4"
+                variant="destructive"
+                onClick={clearSession}
+              >
                 Disconnect
               </Button>
             </CardContent>

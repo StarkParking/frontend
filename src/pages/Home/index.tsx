@@ -1,7 +1,7 @@
 import Balance from './Balance'
-// import LatestParkings from './LastestParkings'
 import ParkingCategories from './ParkingCategories'
 import SearchBar from './SearchBar'
+// import LatestParkings from './LastestParkings'
 
 function Home() {
   return (

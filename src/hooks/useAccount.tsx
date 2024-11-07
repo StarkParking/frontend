@@ -14,36 +14,9 @@ import {
 import * as Dojo from '@dojoengine/torii-wasm'
 import encodeUrl from 'encodeurl'
 import { CartridgeSessionAccount } from '../lib/account-wasm/account_wasm'
+import { REDIRECT_URI, RPC_URL, POLICIES } from '@/constants'
 
-const RPC_URL = import.meta.env.VITE_APP_RPC_URL
 const KEYCHAIN_URL = 'https://x.cartridge.gg'
-const POLICIES = [
-  {
-    target:
-      '0x00d391abca7c9853d84f6c717e6a94b77d11836fb77a8edecfdbf60af59dc105',
-    method: 'register_parking_lot',
-    description: 'Register a parking spot'
-  },
-  {
-    target:
-      '0x00d391abca7c9853d84f6c717e6a94b77d11836fb77a8edecfdbf60af59dc105',
-    method: 'book_parking',
-    description: 'Create a booking for a parking spot'
-  },
-  {
-    target:
-      '0x00d391abca7c9853d84f6c717e6a94b77d11836fb77a8edecfdbf60af59dc105',
-    method: 'end_parking',
-    description: 'End a parking session'
-  },
-  {
-    target:
-      '0x00d391abca7c9853d84f6c717e6a94b77d11836fb77a8edecfdbf60af59dc105',
-    method: 'extend_parking',
-    description: 'Extend a parking session'
-  }
-]
-const REDIRECT_URI = import.meta.env.VITE_APP_REDIRECT_URI
 
 interface AccountStorage {
   username: string
