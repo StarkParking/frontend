@@ -6,6 +6,7 @@ import {
   StarknetConfig,
   jsonRpcProvider
 } from '@starknet-react/core'
+import { sepolia } from '@starknet-react/chains'
 import ControllerConnector from '@cartridge/connector'
 
 import Header from './components/Header'
@@ -20,7 +21,6 @@ import ParkingSession from './pages/ParkingSession'
 import MapView from './pages/MapView'
 import Profile from './pages/Profile'
 import { POLICIES, RPC_URL } from './constants'
-import { sepolia } from '@starknet-react/chains'
 
 function App() {
   const rpc = useCallback(() => {
