@@ -1,4 +1,5 @@
 import Dots from '@/components/Dots'
+import { STRK_ADDRESS } from '@/constants'
 import { useAccount } from '@/hooks/useAccount'
 import { addZeroAfter0x } from '@/lib/utils'
 import { useBalance } from '@starknet-react/core'
@@ -7,7 +8,7 @@ function Balance() {
   const { address } = useAccount()
   const { data, isLoading, isSuccess } = useBalance({
     address: addZeroAfter0x(address || ''),
-    token: '0x04718f5a0fc34cc1af16a1cdee98ffb20c31f5cd61d6ab07201858f4287c938d',
+    token: STRK_ADDRESS,
     watch: false
   })
 

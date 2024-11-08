@@ -18,20 +18,12 @@ interface ParkingSpot {
 const parkingSpots: Record<string, ParkingSpot[]> = {
   nearest: [
     {
-      id: 1,
+      id: 1000,
       name: 'Toserba Yogya Parking',
       address: 'Jl. R. E. Martadinata, Cikole, Sukabumi',
       price: 4.2,
       minutes: 4,
       available: 28
-    },
-    {
-      id: 2,
-      name: 'Jayanti Sukabumi Parking',
-      address: 'Jl. Gunungparang, Cikole, Sukabumi',
-      price: 3.5,
-      minutes: 6,
-      available: 45
     }
   ],
   malls: [

@@ -1,8 +1,13 @@
 import { useParams, useNavigate } from 'react-router-dom'
+import { useState } from 'react'
+import { useReadContract } from '@starknet-react/core'
+import { toast } from 'react-hot-toast'
+import { format } from 'date-fns'
+import { MdOutlineGeneratingTokens } from 'react-icons/md'
+
+import { ChevronLeft, Clock, Calendar, Car } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { Card } from '@/components/ui/card'
-import { ChevronLeft, Clock, Calendar, Car } from 'lucide-react'
-import { toast } from 'react-hot-toast'
 import {
   Select,
   SelectContent,
@@ -10,7 +15,8 @@ import {
   SelectTrigger,
   SelectValue
 } from '@/components/ui/select'
-import { useState } from 'react'
+import PARKING_ABI from '@/abi/parking.json'
+import { SUPPORTED_TOKENS, Token } from '@/constants'
 
 interface Duration {
   text: string
@@ -20,28 +26,24 @@ interface Duration {
 const generateTimeSlots = (): Duration[] => {
   const timeSlots: Duration[] = [
     {
-      text: '30 mins',
-      value: 30
-    },
-    {
       text: '1 hour',
-      value: 60
+      value: 1
     },
     {
       text: '2 hours',
-      value: 120
+      value: 2
     },
     {
       text: '3 hours',
-      value: 180
+      value: 3
     },
     {
       text: '4 hours',
-      value: 240
+      value: 4
     },
     {
       text: '5 hours',
-      value: 300
+      value: 5
     }
   ]
   return timeSlots
@@ -51,7 +53,14 @@ const Booking = () => {
   const { id } = useParams()
   const navigate = useNavigate()
   const [duration, setDuration] = useState('')
+  const [token, setToken] = useState<Token | undefined>(undefined)
   const timeSlots = generateTimeSlots()
+
+  const { data } = useReadContract({
+    abi: PARKING_ABI,
+    functionName: 'get_oracle_token_quote',
+    args: [id]
+  })
 
   const handleBooking = () => {
     if (!duration) {
@@ -102,12 +111,13 @@ const Booking = () => {
               </div>
             </div>
           </div>
+
           <div className="flex items-center gap-3">
             <Calendar className="h-5 w-5 text-gray-400" />
             <div>
               <p className="font-medium">Date</p>
               <p className="text-sm text-gray-400">
-                Today, {new Date().toLocaleDateString()}
+                Today, {format(new Date(), 'd MMM, y')}
               </p>
             </div>
           </div>
@@ -117,6 +127,33 @@ const Booking = () => {
             <div>
               <p className="font-medium">Vehicle</p>
               <p className="text-sm text-gray-400">Car - ABC 123</p>
+            </div>
+          </div>
+        </div>
+
+        <div className="space-y-4">
+          <div className="flex items-center gap-3">
+            <MdOutlineGeneratingTokens className="h-5 w-5 text-gray-400" />
+            <div className="flex-1">
+              <p className="font-medium mb-2">Token</p>
+              <Select value={token?.address} onValueChange={() => setToken}>
+                <SelectTrigger className="w-full border-zinc-700">
+                  <SelectValue placeholder="Select payment token" />
+                </SelectTrigger>
+                <SelectContent className="border-zinc-700">
+                  {SUPPORTED_TOKENS.map(token => (
+                    <SelectItem
+                      key={`token-${token.address}`}
+                      value={token.address}
+                    >
+                      <div className="flex items-center gap-2">
+                        <token.icon />
+                        <span>{token.symbol}</span>
+                      </div>
+                    </SelectItem>
+                  ))}
+                </SelectContent>
+              </Select>
             </div>
           </div>
         </div>
