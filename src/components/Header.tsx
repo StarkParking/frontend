@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import { IoMdWallet } from 'react-icons/io'
 import { FaLocationDot } from 'react-icons/fa6'
+import { IoIosSettings } from 'react-icons/io'
 import { Button } from './ui/button'
 import { useNavigate } from 'react-router-dom'
 import { useAccount } from '../hooks/useAccount'
@@ -38,7 +39,11 @@ function Header() {
         <span>{location}</span>
       </div>
       <Button variant="secondary" onClick={handleWalletButton}>
-        <IoMdWallet className="h-6 w-6 text-black" />
+        {address ? (
+          <IoIosSettings className="h-6 w-6 text-black" />
+        ) : (
+          <IoMdWallet className="h-6 w-6 text-black" />
+        )}
       </Button>
     </div>
   )
