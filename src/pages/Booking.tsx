@@ -48,7 +48,7 @@ const generateTimeSlots = (): Duration[] => {
 }
 
 const Booking = () => {
-  const { spotId } = useParams()
+  const { id } = useParams()
   const navigate = useNavigate()
   const [duration, setDuration] = useState('')
   const timeSlots = generateTimeSlots()
@@ -75,7 +75,7 @@ const Booking = () => {
       <Card className="p-6 space-y-6">
         <div className="space-y-2">
           <p className="text-gray-400">Selected Spot</p>
-          <p className="text-2xl font-bold">#{spotId}</p>
+          <p className="text-2xl font-bold">#{id}</p>
         </div>
 
         <div className="space-y-4">

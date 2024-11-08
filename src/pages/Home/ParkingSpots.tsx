@@ -70,7 +70,7 @@ const ParkingSpots = ({ category }: ParkingSpotsProps) => {
         <Card
           key={spot.id}
           className="bg-white p-4 cursor-pointer"
-          onClick={() => navigate(`/parking/${spot.id}`)}
+          onClick={() => navigate(`/booking/${spot.id}`)}
         >
           <div className="flex gap-4 mb-4">
             {spot.image ? (

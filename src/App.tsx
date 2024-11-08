@@ -14,7 +14,7 @@ import MobileLayout from './components/MobileLayout'
 import BottomNavigation from './components/BottomNavigation'
 import { AccountProvider } from './hooks/useAccount'
 import Home from './pages/Home'
-import ParkingSpotSelection from './pages/ParkingSpotSelection'
+// import ParkingSpotSelection from './pages/ParkingSpotSelection'
 import Booking from './pages/Booking'
 import Sessions from './pages/Sessions'
 import ParkingSession from './pages/ParkingSession'
@@ -50,8 +50,8 @@ function App() {
             <div className="px-4">
               <Routes>
                 <Route path="/" element={<Home />} />
-                <Route path="/parking/:id" element={<ParkingSpotSelection />} />
-                <Route path="/booking/:spotId" element={<Booking />} />
+                {/* <Route path="/parking/:id" element={<ParkingSpotSelection />} /> */}
+                <Route path="/booking/:id" element={<Booking />} />
                 <Route path="/session/" element={<Sessions />} />
                 <Route path="/session/:spotId" element={<ParkingSession />} />
                 <Route path="/map" element={<MapView />} />
