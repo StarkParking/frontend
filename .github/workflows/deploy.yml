@@ -19,7 +19,7 @@ jobs:
           node-version: '20.9.0'
 
       - name: Install dependencies
-        run: yarn install
+        run: yarn install && yarn add @starknet-io/types-js
 
       - name: Build project
         run: yarn build
