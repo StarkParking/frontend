@@ -1,6 +1,5 @@
 import EthSvg from '@/assets/eth.svg?react'
 import STRKSvg from '@/assets/strk.svg?react'
-import { ReactNode } from 'react'
 
 export const RPC_URL = 'https://api.cartridge.gg/x/starknet/sepolia'
 export const REDIRECT_URI = 'https://t.me/starkparking_bot/start'
@@ -31,6 +30,8 @@ export const POLICIES = [
   }
 ]
 
+export const PARKING_CONTRACT_ADDRESS =
+  '0x0614d7b4cc2e63a4f325ae42be06cbcc0f709a3fc3396c316ea824cd6b169e36'
 export const ETH_ADDRESS =
   '0x049d36570d4e46f48e99674bd3fcc84644ddd6b96f7c741b1562b82f9e004dc7'
 export const STRK_ADDRESS =
@@ -39,6 +40,7 @@ export const STRK_ADDRESS =
 export interface Token {
   name: string
   symbol: string
+  decimals: number
   address: `0x${string}`
   icon: React.FunctionComponent
 }
@@ -47,12 +49,14 @@ export const SUPPORTED_TOKENS: Token[] = [
   {
     name: 'Ether',
     symbol: 'ETH',
+    decimals: 18,
     address: ETH_ADDRESS,
     icon: EthSvg
   },
   {
-    name: 'STRK',
-    symbol: 'Starknet Token',
+    name: 'Starknet Token',
+    symbol: 'STRK',
+    decimals: 18,
     address: STRK_ADDRESS,
     icon: STRKSvg
   }

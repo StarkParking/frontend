@@ -6,7 +6,7 @@ import { useBalance } from '@starknet-react/core'
 
 function Balance() {
   const { address } = useAccount()
-  const { data, isLoading, isSuccess } = useBalance({
+  const { data, isLoading } = useBalance({
     address: addZeroAfter0x(address || ''),
     token: STRK_ADDRESS,
     watch: false

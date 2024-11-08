@@ -37,6 +37,7 @@
     "starknet": "^6.11.0",
     "tailwind-merge": "^2.5.4",
     "tailwindcss-animate": "^1.0.7",
+    "viem": "^2.21.43",
     "vite-plugin-svgr": "^4.3.0"
   },
   "devDependencies": {

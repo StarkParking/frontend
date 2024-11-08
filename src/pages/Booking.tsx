@@ -4,6 +4,7 @@ import { useReadContract } from '@starknet-react/core'
 import { toast } from 'react-hot-toast'
 import { format } from 'date-fns'
 import { MdOutlineGeneratingTokens } from 'react-icons/md'
+import { formatUnits } from 'viem'
 
 import { ChevronLeft, Clock, Calendar, Car } from 'lucide-react'
 import { Button } from '@/components/ui/button'
@@ -16,7 +17,8 @@ import {
   SelectValue
 } from '@/components/ui/select'
 import PARKING_ABI from '@/abi/parking.json'
-import { SUPPORTED_TOKENS, Token } from '@/constants'
+import { PARKING_CONTRACT_ADDRESS, SUPPORTED_TOKENS, Token } from '@/constants'
+import Dots from '@/components/Dots'
 
 interface Duration {
   text: string
@@ -56,11 +58,18 @@ const Booking = () => {
   const [token, setToken] = useState<Token | undefined>(undefined)
   const timeSlots = generateTimeSlots()
 
-  const { data } = useReadContract({
+  const { data: quote, isLoading } = useReadContract({
     abi: PARKING_ABI,
+    address: PARKING_CONTRACT_ADDRESS,
     functionName: 'get_oracle_token_quote',
-    args: [id]
+    args: [id, token?.address, duration],
+    watch: true
   })
+
+  const onTokenChange = (e: string) => {
+    const _token = SUPPORTED_TOKENS.find(t => t.address === e)
+    setToken(_token)
+  }
 
   const handleBooking = () => {
     if (!duration) {
@@ -136,7 +145,7 @@ const Booking = () => {
             <MdOutlineGeneratingTokens className="h-5 w-5 text-gray-400" />
             <div className="flex-1">
               <p className="font-medium mb-2">Token</p>
-              <Select value={token?.address} onValueChange={() => setToken}>
+              <Select value={token?.address} onValueChange={onTokenChange}>
                 <SelectTrigger className="w-full border-zinc-700">
                   <SelectValue placeholder="Select payment token" />
                 </SelectTrigger>
@@ -161,7 +170,16 @@ const Booking = () => {
         <div className="pt-4 border-t border-zinc-800">
           <div className="flex justify-between items-center mb-4">
             <span className="text-gray-400">Total Amount</span>
-            <span className="text-2xl font-bold">$8.40</span>
+            {isLoading ? (
+              <Dots />
+            ) : (
+              <span className="text-2xl font-bold">
+                {Number(formatUnits(quote || 0, token?.decimals || 18)).toFixed(
+                  2
+                )}{' '}
+                {token?.symbol}
+              </span>
+            )}
           </div>
           <Button
             className="w-full bg-black hover:bg-gray-800"
