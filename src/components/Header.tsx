@@ -22,7 +22,7 @@ function Header() {
     fetch('https://ipapi.co/json/')
       .then(res => res.json())
       .then(data => {
-        const userLocation = `${data.city}`
+        const userLocation = `${data.city}, ${data.country}`
         setLocation(userLocation)
       })
       .catch(error => {
