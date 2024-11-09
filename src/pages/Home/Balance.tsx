@@ -1,31 +1,54 @@
 import { Account, Contract } from 'starknet'
 
-import Dots from '@/components/Dots'
 import { PARKING_CONTRACT_ADDRESS, STRK_ADDRESS } from '@/constants'
 import { useArgent } from '@/hooks/useArgent'
-import { addZeroAfter0x } from '@/lib/utils'
-import { useBalance } from '@starknet-react/core'
 import ERC20_ABI from '@/abi/erc20'
+import { useEffect, useState } from 'react'
+import Dots from '@/components/Dots'
+import { formatUnits } from 'viem'
 
 function Balance() {
   const { account } = useArgent()
+  const [balance, setBalance] = useState('')
+  const [isLoading, setIsLoading] = useState(false)
+
   const contract = new Contract(
     ERC20_ABI,
-    PARKING_CONTRACT_ADDRESS,
+    STRK_ADDRESS,
     account as unknown as Account
   )
-  // const { data, isLoading } = useBalance({
-  //   address: addZeroAfter0x(address || ''),
-  //   token: STRK_ADDRESS,
-  //   watch: false
-  // })
+
+  useEffect(() => {
+    ;(async () => {
+      if (account) {
+        try {
+          setIsLoading(true)
+
+          const balance = await contract.balance_of(account.address)
+
+          setBalance(balance)
+        } catch (error) {
+          console.error('Could not load balance')
+        } finally {
+          setIsLoading(false)
+        }
+      }
+    })()
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
 
   return (
     <div className="mb-8 flex justify-between items-end">
       <div>
         <div className="text-sm opacity-80 mb-2">Your Balance</div>
         <div className="text-3xl font-bold">
-          {/* {isLoading ? <Dots /> : <span>{data?.formatted} STRK</span>} */}
+          {isLoading ? (
+            <Dots />
+          ) : (
+            <span>
+              {Number(formatUnits(BigInt(balance), 18)).toFixed(3)} STRK
+            </span>
+          )}
         </div>
       </div>
     </div>

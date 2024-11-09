@@ -125,13 +125,6 @@ const Booking = () => {
     })()
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [duration, id, token])
-  // const { data: quote, isLoading } = useReadContract({
-  //   abi: PARKING_ABI,
-  //   address: PARKING_CONTRACT_ADDRESS,
-  //   functionName: 'get_oracle_token_quote',
-  //   args: [id, token?.address, duration],
-  //   watch: false
-  // })
 
   const bookingId = useMemo(() => nanoid(), [])
 
