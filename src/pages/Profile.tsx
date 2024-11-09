@@ -14,6 +14,7 @@ import {
   CardTitle
 } from '@/components/ui/card'
 import { useAccount } from '@/hooks/useAccount'
+import { useArgent } from '@/hooks/useArgent'
 
 interface Vehicle {
   plate: string
@@ -28,7 +29,7 @@ const Profile = () => {
   const [vehicles, setVehicles] = useState<Vehicle[]>([])
   const [newVehicle, setNewVehicle] = useState({ plate: '', model: '' })
   const [isAddingVehicle, setIsAddingVehicle] = useState(false)
-  const { address, openConnectionPage, clearSession } = useAccount()
+  const { address, connect, clearSession } = useArgent()
 
   const handleAddVehicle = () => {
     if (!newVehicle.plate || !newVehicle.model) {
@@ -50,8 +51,8 @@ const Profile = () => {
     toast.success('Profile updated successfully')
   }
 
-  const handleConnectWallet = () => {
-    openConnectionPage()
+  const handleConnectWallet = async () => {
+    await connect()
   }
 
   return (

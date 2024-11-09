@@ -1,4 +1,6 @@
-[
+import { Abi } from 'starknet'
+
+export default JSON.parse(`[
   {
     "name": "ParkingImpl",
     "type": "impl",
@@ -658,4 +660,4 @@
       }
     ]
   }
-]
+]`) satisfies Abi

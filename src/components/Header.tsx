@@ -5,15 +5,16 @@ import { IoIosSettings } from 'react-icons/io'
 import { Button } from './ui/button'
 import { useNavigate } from 'react-router-dom'
 import { useAccount } from '../hooks/useAccount'
+import { useArgent } from '@/hooks/useArgent'
 
 function Header() {
-  const { address, openConnectionPage } = useAccount()
+  const { account, connect } = useArgent()
   const [location, setLocation] = useState('Loading...')
   const navigate = useNavigate()
 
-  const handleWalletButton = () => {
-    if (!address) {
-      openConnectionPage()
+  const handleWalletButton = async () => {
+    if (!account) {
+      await connect()
     } else {
       navigate('/profile')
     }
@@ -39,7 +40,7 @@ function Header() {
         <span>{location}</span>
       </div>
       <Button variant="secondary" onClick={handleWalletButton}>
-        {address ? (
+        {account ? (
           <IoIosSettings className="h-6 w-6 text-black" />
         ) : (
           <IoMdWallet className="h-6 w-6 text-black" />
